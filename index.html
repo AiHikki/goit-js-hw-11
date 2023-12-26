@@ -7,22 +7,26 @@
     <title>Vanilla App Template</title>
     
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-32231325.js">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-e5212ee8.css">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-c9db6b34.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-46aac873.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-eb6030bc.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-cc7885b2.css">
   </head>
   <body>
-    <form id="form">
-      <label
-        ><input
-          id="searchInput"
-          type="text"
-          placeholder="Search images..."
-          name="searchInput"
-      /></label>
-      <button type="submit">Search</button>
-    </form>
-    <ul id="gallery"></ul>
+    <div class="container">
+      <form id="form" class="form">
+        <label>
+          <input
+            class="search-input"
+            id="searchInput"
+            type="text"
+            placeholder="Search images..."
+            name="searchInput"
+        /></label>
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+      <span class="loader hide"></span>
+      <ul class="gallery" id="gallery"></ul>
+    </div>
     
   </body>
 </html>
