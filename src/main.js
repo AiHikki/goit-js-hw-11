@@ -1,14 +1,17 @@
-import showMessage from './scripts/iziToast';
+import showMessage from './scripts/iziToast.js';
+import { lightbox } from './scripts/lightbox.js';
 
 const form = document.querySelector('#form'),
   searchInput = document.querySelector('#searchInput'),
-  gallery = document.querySelector('#gallery');
+  gallery = document.querySelector('#gallery'),
+  loader = document.querySelector('.loader');
 
 form.addEventListener('submit', fetchImages);
 
 function fetchImages(e) {
+  loader.classList.remove('hide');
+  gallery.innerHTML = '';
   e.preventDefault();
-
   const searchParams = new URLSearchParams({
     key: '41474300-2fa05bee877be877b8dc1781f',
     q: searchInput.value,
@@ -25,10 +28,13 @@ function fetchImages(e) {
       return response.json();
     })
     .then(images => {
-      if (images.hits.length === 0) {
-        showMessage();
-      }
-      renderImages(images.hits);
+      setTimeout(() => {
+        loader.classList.add('hide');
+        if (images.hits.length === 0) {
+          return showMessage();
+        }
+        renderImages(images.hits);
+      }, 2000);
     })
     .catch(error => console.log(error));
 
@@ -47,8 +53,15 @@ function renderImages(images) {
         <a href="${largeImageURL}">
           <img src="${webformatURL}" alt="${tags}" />
         </a>
+        <div class="image-desc">
+          <div>Likes <span>${likes}</span></div>
+          <div>Views <span>${views}</span></div>
+          <div>Comments <span>${comments}</span></div>
+          <div>Downloads <span>${downloads}</span></div>
+        </div>
       </li>
-    `,
+      `,
     ''
   );
+  lightbox.refresh();
 }
