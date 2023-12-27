@@ -36,9 +36,10 @@ function fetchImages(e) {
         renderImages(images.hits);
       }, 2000);
     })
-    .catch(error => console.log(error));
-
-  form.reset();
+    .catch(error => console.log(error))
+    .finally(() => {
+      form.reset();
+    });
 }
 
 function renderImages(images) {
