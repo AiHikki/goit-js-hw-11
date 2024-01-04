@@ -92,6 +92,17 @@ body {
 
 /* RESPONSIVE */
 
+@media (max-width: 369px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .search-btn {
+    margin-left: 0;
+  }
+}
+
 @media (min-width: 600px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
