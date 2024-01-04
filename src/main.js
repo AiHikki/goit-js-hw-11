@@ -12,6 +12,7 @@ function fetchImages(e) {
   loader.classList.remove('hide');
   gallery.innerHTML = '';
   e.preventDefault();
+  const url = new URL('https://pixabay.com/api/');
   const searchParams = new URLSearchParams({
     key: '41474300-2fa05bee877be877b8dc1781f',
     q: searchInput.value,
@@ -20,7 +21,7 @@ function fetchImages(e) {
     safesearch: true,
   });
 
-  fetch(`https://pixabay.com/api/?${searchParams}`)
+  fetch(`${url}?${searchParams}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(response.status);
@@ -55,10 +56,22 @@ function renderImages(images) {
           <img src="${webformatURL}" alt="${tags}" />
         </a>
         <div class="image-desc">
-          <div>Likes <span>${likes}</span></div>
-          <div>Views <span>${views}</span></div>
-          <div>Comments <span>${comments}</span></div>
-          <div>Downloads <span>${downloads}</span></div>
+          <div class="image-desc-item">
+            <div class="image-desc-label">Likes</div>
+            <div>${likes}</div>
+          </div>
+          <div class="image-desc-item">
+             <div class="image-desc-label">Views</div>
+             <div>${views}</div>
+          </div>
+          <div class="image-desc-item">
+            <div class="image-desc-label">Comments</div>
+            <div>${comments}</div>
+          </div>
+          <div class="image-desc-item">
+            <div class="image-desc-label">Downloads</div>
+            <div>${downloads}</div>
+          </div>
         </div>
       </li>
       `,
